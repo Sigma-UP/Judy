@@ -1,0 +1,15 @@
+D:\Work\OOP\TaskManager\bin\Debug\TaskManager.exe.config
+D:\Work\OOP\TaskManager\bin\Debug\TaskManager.exe
+D:\Work\OOP\TaskManager\bin\Debug\TaskManager.pdb
+D:\Work\OOP\TaskManager\obj\Debug\TaskManager.csprojAssemblyReference.cache
+D:\Work\OOP\TaskManager\obj\Debug\MainWindow.g.cs
+D:\Work\OOP\TaskManager\obj\Debug\App.g.cs
+D:\Work\OOP\TaskManager\obj\Debug\TaskManager_MarkupCompile.cache
+D:\Work\OOP\TaskManager\obj\Debug\TaskManager_MarkupCompile.lref
+D:\Work\OOP\TaskManager\obj\Debug\MainWindow.baml
+D:\Work\OOP\TaskManager\obj\Debug\TaskManager.g.resources
+D:\Work\OOP\TaskManager\obj\Debug\TaskManager.Properties.Resources.resources
+D:\Work\OOP\TaskManager\obj\Debug\TaskManager.csproj.GenerateResource.cache
+D:\Work\OOP\TaskManager\obj\Debug\TaskManager.csproj.CoreCompileInputs.cache
+D:\Work\OOP\TaskManager\obj\Debug\TaskManager.exe
+D:\Work\OOP\TaskManager\obj\Debug\TaskManager.pdb
