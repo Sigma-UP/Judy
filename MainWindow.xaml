@@ -5,15 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TaskManager"
         mc:Ignorable="d"
-        Title="MainWindow" Height="800" Width="1000">
+        Title="MainWindow" Height="800" Width="1400" ResizeMode="CanMinimize">
+    
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="230"/>
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Background="AliceBlue">
-            <TextBlock x:Name="tbox_currTime" Text="CURRENT TIME" FontSize="30" Margin="10, 20, 30, 40"/>
+        <StackPanel Background="#FF630B36">
+            <TextBlock Foreground ="#FF018574" x:Name="tbox_currTime"
+                       Text="Time" FontSize="40" Margin="0,20,10,0"
+                       HorizontalAlignment="Center"/>
+            <TextBlock Foreground ="#FF056356" x:Name="tbox_currDate" 
+                       Text="Date" FontSize="15" Margin="0,0,10,0" 
+                       HorizontalAlignment="Center"/>
+            <Button Margin="10, 26, 10, 0" Height="50" 
+                    Content="Current Tasks" FontSize="20"
+                    BorderBrush="#FF701643"
+                    Background="#FF018574" Foreground="#FF701643"/>
+            <Button Margin="10, 10, 10, 0" Height="50" 
+                    Content="Finished Tasks" FontSize="20"
+                    BorderBrush="#FF701643"
+                    Background="#FF018574" Foreground="#FF701643"/>
+
         </StackPanel>
+
+        <Frame NavigationUIVisibility="Hidden" Source="Manager.xaml"
+               Grid.Column="1" Background="#FF701643"/>
     </Grid>
 </Window>

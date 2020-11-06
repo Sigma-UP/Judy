@@ -1,0 +1,59 @@
+﻿<Page x:Class="TaskManager.Manager"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TaskManager"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="770"
+      Title="Manager">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0">
+            <TextBlock Margin="10, 19, 0, 0" Text="Your current tasks" Foreground="#FF018574" FontSize="40"/>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Margin="10, 0, 0, 0" Text="Upcoming: " Foreground="#FF018574" FontSize="15"/>
+                <TextBlock x:Name="tbox_upcoming" Margin="10, 0, 0, 0" Foreground="#FF018574" FontSize="15"/>
+            </StackPanel>
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="5*"/>
+            </Grid.ColumnDefinitions>
+            <!--TaskList-->
+            <StackPanel Grid.Column="0" Margin="0, 20, 0, 0" Orientation="Vertical">
+                <ListView Margin="10, 0, 10, 0" Height="400" Background="#FF056356" BorderBrush="#FF056356"/>
+
+                <Button Content="Add task..." Margin="10, 10, 10, 0" 
+                        Height="50" FontSize="20"
+                        BorderBrush="#FF701643"
+                        Background="#FF018574" Foreground="#FF701643"/>
+                <Button Content="Remove task..." Margin="10, 10, 10, 0" 
+                        Height="50" FontSize="20"
+                        BorderBrush="#FF701643"
+                        Background="#FF018574" Foreground="#FF701643"/>
+                <Button Content="Sort tasks..." Margin="10, 10, 10, 0" 
+                        Height="50" FontSize="20"
+                        BorderBrush="#FF701643"
+                        Background="#FF018574" Foreground="#FF701643"/>
+            </StackPanel>
+
+            <!--TaskFullInfo-->
+            <StackPanel Grid.Column="1" Margin="0, 20, 0, 0" Orientation="Vertical">
+                <TextBlock Margin="10, 0, 10, 0" Height="518" Background="#FF056356"/>
+                <Button x:Name="btn_taskDone" IsEnabled="False"
+                        Content="Done" Margin="10, 10, 10, 0" 
+                        Height="50" FontSize="20"
+                        BorderBrush="#FF701643" Foreground="#FF701643" Background="#FF018574"/>
+            </StackPanel>
+        </Grid>
+
+    </Grid>
+</Page>

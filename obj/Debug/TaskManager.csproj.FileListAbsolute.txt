@@ -13,3 +13,5 @@ D:\Work\OOP\TaskManager\obj\Debug\TaskManager.csproj.GenerateResource.cache
 D:\Work\OOP\TaskManager\obj\Debug\TaskManager.csproj.CoreCompileInputs.cache
 D:\Work\OOP\TaskManager\obj\Debug\TaskManager.exe
 D:\Work\OOP\TaskManager\obj\Debug\TaskManager.pdb
+D:\Work\OOP\TaskManager\obj\Debug\Manager.g.cs
+D:\Work\OOP\TaskManager\obj\Debug\Manager.baml

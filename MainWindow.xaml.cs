@@ -23,7 +23,15 @@ namespace TaskManager
         public MainWindow()
         {
             InitializeComponent();
-            tbox_currTime.Text = DateTime.Now.ToString("hh:mm");
+            
+            var timer = new System.Windows.Threading.DispatcherTimer();
+            timer.Interval = new TimeSpan(0, 0, 1);
+            timer.IsEnabled = true;
+            timer.Tick += (o, t) => { 
+                tbox_currTime.Text = $"{DateTime.Now.Hour:00}:{DateTime.Now.Minute:00}:{DateTime.Now.Second:00}";
+                tbox_currDate.Text = $"{DateTime.Now.DayOfWeek} | {DateTime.Now.Day:00}/{DateTime.Now.Month:00}/{DateTime.Now.Year}";
+            };
+            timer.Start();
         }
     }
 }
