@@ -20,9 +20,26 @@ namespace TaskManager
     /// </summary>
     public partial class Manager : Page
     {
+        List<Task> tasks = new List<Task>();
+        
         public Manager()
         {
             InitializeComponent();
+
+            Task.load(tasks);
+
+            foreach(Task task in tasks)
+                task_list.Items.Add(task.Header);
         }
+
+        private void task_list_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            tbox_description.Text = 
+                $"  Task: {tasks[task_list.SelectedIndex].Header}\r\n" +
+                $"  Date: {tasks[task_list.SelectedIndex].Date}\r\n" +
+                $"  Description: {tasks[task_list.SelectedIndex].Desc}";
+        }
+
+
     }
 }

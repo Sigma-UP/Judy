@@ -24,13 +24,17 @@
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2.5*"/>
                 <ColumnDefinition Width="5*"/>
             </Grid.ColumnDefinitions>
             <!--TaskList-->
             <StackPanel Grid.Column="0" Margin="0, 20, 0, 0" Orientation="Vertical">
-                <ListView Margin="10, 0, 10, 0" Height="400" Background="#FF056356" BorderBrush="#FF056356"/>
-
+                <ListView x:Name="task_list" Margin="10, 0, 10, 0"
+                          Height="400" Background="#FF056356" 
+                          BorderBrush="#FF056356" FontSize="15"
+                          Foreground="#FF701643"
+                          SelectionChanged="task_list_SelectionChanged" FontWeight="Medium"/>
+                
                 <Button Content="Add task..." Margin="10, 10, 10, 0" 
                         Height="50" FontSize="20"
                         BorderBrush="#FF701643"
@@ -47,7 +51,11 @@
 
             <!--TaskFullInfo-->
             <StackPanel Grid.Column="1" Margin="0, 20, 0, 0" Orientation="Vertical">
-                <TextBlock Margin="10, 0, 10, 0" Height="518" Background="#FF056356"/>
+                <TextBlock x:Name="tbox_description" Margin="10, 0, 10, 0" 
+                           Height="518" Background="#FF056356"
+                           TextWrapping="Wrap" FontSize="20" 
+                           FontFamily="Sitka Display" Foreground="#FF701643" 
+                           FontWeight="Medium" TextOptions.TextFormattingMode="Display"/>
                 <Button x:Name="btn_taskDone" IsEnabled="False"
                         Content="Done" Margin="10, 10, 10, 0" 
                         Height="50" FontSize="20"
