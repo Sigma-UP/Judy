@@ -11,14 +11,14 @@ namespace TaskManager
     class Task
     {
         static string path = "Tasks.txt";
-
+        //add comments
         private string header;
         private string description;
         private string date;
 
         public string Header
         {
-            get 
+            get
             {
                 return header;
             }
@@ -69,7 +69,7 @@ namespace TaskManager
             StreamReader sr = new StreamReader(path);
 
             string line;
-            
+
             int a = 0;
 
             Task task = null;
@@ -85,7 +85,7 @@ namespace TaskManager
                     else if (a == 1)
                     {
                         task.date = line;
-                        a++; 
+                        a++;
                     }
                     else if (a == 2)
                     {
@@ -95,7 +95,7 @@ namespace TaskManager
                                 task.description += "\r\n  ";
 
                             task.description += line;
-                            
+
                             if ((line = sr.ReadLine()) == null)
                                 break;
                         }
@@ -110,7 +110,7 @@ namespace TaskManager
             StreamReader sr = new StreamReader(path);
 
             string line, currentNum;
-            
+
             while((line=sr.ReadLine()) != null)
             {
                 int k = 0;
@@ -122,7 +122,7 @@ namespace TaskManager
                 if (currentNum == i.ToString())
                 {
                     int a = 0;
-                    
+
                     while (a < 6)
                     {
                         line = sr.ReadLine();
