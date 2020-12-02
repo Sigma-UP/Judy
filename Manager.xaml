@@ -28,17 +28,21 @@
                 <ColumnDefinition Width="5*"/>
             </Grid.ColumnDefinitions>
             <!--TaskList-->
-            <StackPanel Grid.Column="0" Margin="0, 20, 0, 0" Orientation="Vertical">
+            <StackPanel Grid.Column="0" Margin="0, 20, 0, 0" 
+                        Orientation="Vertical" >
+             
                 <ListView x:Name="task_list" Margin="10, 0, 10, 0"
                           Height="400" Background="#FF056356" 
                           BorderBrush="#FF056356" FontSize="15"
-                          Foreground="#FF701643"
+                          Foreground="#FF701643" Visibility="Visible"
                           SelectionChanged="task_list_SelectionChanged" FontWeight="Medium"/>
-                
-                <Button Content="Add task..." Margin="10, 10, 10, 0" 
+
+               <Button x:Name="btn_addTask"
+                        Content="Add task..." Margin="10, 10, 10, 0" 
                         Height="50" FontSize="20"
                         BorderBrush="#FF701643"
-                        Background="#FF018574" Foreground="#FF701643"/>
+                        Background="#FF018574" Foreground="#FF701643"
+                        Click="btn_addTask_Click"/>
                 <Button Content="Remove task..." Margin="10, 10, 10, 0" 
                         Height="50" FontSize="20"
                         BorderBrush="#FF701643"

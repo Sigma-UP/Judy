@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,9 +16,6 @@ using System.Windows.Shapes;
 
 namespace TaskManager
 {
-    /// <summary>
-    /// Логика взаимодействия для Manager.xaml
-    /// </summary>
     public partial class Manager : Page
     {
         List<Task> tasks = new List<Task>();
@@ -25,6 +23,8 @@ namespace TaskManager
         public Manager()
         {
             InitializeComponent();
+
+            task_list.Visibility = Visibility.Visible;
 
             Task.load(tasks);
 
@@ -40,6 +40,15 @@ namespace TaskManager
                 $"  Description: {tasks[task_list.SelectedIndex].Desc}";
         }
 
-
+        private void btn_addTask_Click(object sender, RoutedEventArgs e)
+        {
+            NewTaskForm newTask = new NewTaskForm();
+            newTask.Show();
+            if (newTask.new_task != null)
+            {
+                newTask.new_task.save(tasks.Count);
+                tasks.Add(newTask.new_task);
+            }
+        }
     }
 }

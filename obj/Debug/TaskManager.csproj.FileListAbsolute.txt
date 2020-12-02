@@ -32,3 +32,5 @@ D:\Work\OOP\Judith\obj\Debug\TaskManager.csproj.GenerateResource.cache
 D:\Work\OOP\Judith\obj\Debug\TaskManager.csproj.CoreCompileInputs.cache
 D:\Work\OOP\Judith\obj\Debug\TaskManager.exe
 D:\Work\OOP\Judith\obj\Debug\TaskManager.pdb
+D:\Work\OOP\Judith\obj\Debug\NewTaskForm.g.cs
+D:\Work\OOP\Judith\obj\Debug\NewTaskForm.baml

@@ -1,0 +1,162 @@
+﻿<Window x:Class="TaskManager.NewTaskForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TaskManager"
+        mc:Ignorable="d"
+        Title="Add new task..." Height="563.913" Width="449.867" Background="#FF630B36">
+
+    <StackPanel x:Name="newTask_form" 
+                Margin="20" Background="#FF056356">
+        <!--TaskHeadEdit-->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="65"/>
+                <ColumnDefinition Width="5*"/>
+            </Grid.ColumnDefinitions>
+
+            <!--Header Task-->
+            <TextBlock Grid.Column="0" Text="Task:" 
+                       Margin="10, 10, 5, 10" 
+                       Foreground="White" FontSize="20"/>
+            <!--TaskHeader-edit zone-->
+            <TextBox Grid.Column="1" x:Name="tbox_head"
+                     Background="#FF056356"
+                     Foreground="White" Margin="0,10,10,10" 
+                     BorderBrush="{x:Null}"
+                     FontSize="20" VerticalContentAlignment="Center"/>
+        </Grid>
+
+        <!--DateEdit-->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="65"/>
+                <ColumnDefinition Width="4*"/>
+            </Grid.ColumnDefinitions>
+            <!--Header Date-->
+            <TextBlock Grid.Column="0" Text="Date:"
+                       Margin="10, 10, 5, 10"  
+                       Foreground="White" FontSize="20"/>
+            <!--DD/MM/YY-edit zone-->
+            <Grid Grid.Column="1" HorizontalAlignment="Left">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="8"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="8"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <TextBox Text="DD" x:Name="tbox_dateDay" 
+                             PreviewTextInput="TextBox_PreviewTextInput" PreviewKeyDown="TextBox_PreviewKeyDown"
+                             
+                             Margin="0, 10" 
+                             Foreground="Gray" FontSize="20"
+                             Background="{x:Null}" BorderBrush="{x:Null}"
+                             HorizontalContentAlignment="Right" VerticalContentAlignment="Center" 
+                             LostFocus="tbox_LostFocus" GotFocus="tbox_GotFocus"/>
+                </Grid>
+                <TextBlock Grid.Column="1" Text="/"
+                           FontSize="20" Foreground="Gray"
+                           VerticalAlignment="Center"/>
+                <Grid Grid.Column="2">
+                    <TextBox Text="MM" 
+                             PreviewTextInput="TextBox_PreviewTextInput" PreviewKeyDown="TextBox_PreviewKeyDown"
+                             Margin="0, 10" x:Name="tbox_dateMonth" 
+                             Foreground="Gray" FontSize="20" 
+                             Background="{x:Null}" BorderBrush="{x:Null}"
+                             HorizontalContentAlignment="Center" 
+                             VerticalContentAlignment="Center"
+                             LostFocus="tbox_LostFocus" GotFocus="tbox_GotFocus"/>
+                </Grid>
+                <TextBlock Grid.Column="3" Text="/"
+                           FontSize="20" Foreground="Gray"
+                           VerticalAlignment="Center"/>
+                <Grid Grid.Column="4">
+                    <TextBox Text="YY" x:Name="tbox_dateYear"
+                             PreviewTextInput="TextBox_PreviewTextInput" PreviewKeyDown="TextBox_PreviewKeyDown"
+                             Margin="0, 10" 
+                             Foreground="Gray" FontSize="20" 
+                             Background="{x:Null}" BorderBrush="{x:Null}"
+                             HorizontalContentAlignment="Left" 
+                             VerticalContentAlignment="Center"
+                             LostFocus="tbox_LostFocus" GotFocus="tbox_GotFocus"/>
+                </Grid>
+            </Grid>
+        </Grid>
+
+        <!--TimeEdit-->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="65"/>
+                <ColumnDefinition Width="4.25*"/>
+            </Grid.ColumnDefinitions>
+
+            <!--Header Time-->
+            <TextBlock Grid.Column="0"
+                       Margin="10, 10, 5, 10" Text="Time: " 
+                       Foreground="White" FontSize="20"/>
+            <!--HH:MM-edit zone-->
+            <Grid Grid.Column="1" HorizontalAlignment="Left">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <TextBox Grid.Column="0" x:Name="tbox_timeHour"
+                         PreviewTextInput="TextBox_PreviewTextInput" PreviewKeyDown="TextBox_PreviewKeyDown"
+                         Text="HH" Foreground="Gray" FontSize="20" 
+                         TextAlignment="Right" 
+                         Background="{x:Null}" BorderBrush="{x:Null}"
+                         HorizontalContentAlignment="Center" 
+                         VerticalAlignment="Center"
+                         LostFocus="tbox_LostFocus" GotFocus="tbox_GotFocus"/>
+                <TextBlock Grid.Column="1" Text=":" 
+                           FontSize="20" Foreground="Gray"
+                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBox Grid.Column="2" x:Name="tbox_timeMinute"
+                         PreviewTextInput="TextBox_PreviewTextInput" PreviewKeyDown="TextBox_PreviewKeyDown"
+                         Text="MM" 
+                         Foreground="Gray" FontSize="20"
+                         Background="{x:Null}" BorderBrush="{x:Null}"
+                         HorizontalContentAlignment="Center" 
+                         VerticalAlignment="Center"
+                         LostFocus="tbox_LostFocus" GotFocus="tbox_GotFocus"/>
+            </Grid>
+        </Grid>
+
+        <!--TaskDescriptEdit-->
+        <StackPanel>
+            <TextBlock Text="Description" FontSize="20"
+                       Foreground="White" TextAlignment="Center"/>
+            <TextBox  Margin="10" Height="230" x:Name="tbox_description"
+                      Background="#FF018574" 
+                      Foreground="White"
+                      BorderBrush="#FF701643"
+                      FontSize="20" TextWrapping="Wrap"
+                      IsEnabled="True"/>
+        </StackPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="btn_done" Grid.Column="0"
+                Content="Done" Margin="10, 10, 10, 10" 
+                Height="50" Width="150" 
+                FontSize="20" HorizontalAlignment="Left"
+                BorderBrush="#FF701643"
+                Background="#FF018574" Foreground="#FF701643"
+                Click="btn_done_Click"/>
+            <Button x:Name="btn_cancel" Grid.Column="1"
+                Content="Cancel" Margin="10, 10, 10, 10" 
+                Height="50" Width="150"
+                FontSize="20" HorizontalAlignment="Right"
+                BorderBrush="#FF701643"
+                Background="#FF018574" Foreground="#FF701643"
+                Click="btn_cancel_Click"/>
+    </Grid>
+    </StackPanel>
+</Window>

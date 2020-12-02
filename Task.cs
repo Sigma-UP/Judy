@@ -8,10 +8,11 @@ using System.Threading.Tasks;
 
 namespace TaskManager
 {
-    class Task
+    public class Task
     {
+        List<Task> tasks = new List<Task>();
+
         static string path = "Tasks.txt";
-        //add comments
         private string header;
         private string description;
         private string date;
@@ -33,6 +34,10 @@ namespace TaskManager
             {
                 return description;
             }
+            set
+            {
+                description = value;
+            }
         }
         public string Date
         {
@@ -40,17 +45,21 @@ namespace TaskManager
             {
                 return date;
             }
+            set
+            {
+                date = value;
+            }
         }
+
         public void setDescription(string header, string description)
         {
             this.header = header;
             this.description = description;
         }
-        public void setDate(int day, int month, int year, int time)
+        public void setDate(string day = "NN", string month = "NN", string year = "NN", string hour = "NN", string min = "NN")
         {
-            date = $"{day}/{month}/{year}|{time}";
+            date = $"{day}/{month}/{year}|{hour}:{min}";
         }
-
 
         public void save(int i)
         {
@@ -62,8 +71,6 @@ namespace TaskManager
 
             sw.Close();
         }
-
-
         public static void load(List<Task> tasks)
         {
             StreamReader sr = new StreamReader(path);
@@ -102,40 +109,6 @@ namespace TaskManager
                         tasks.Add(task);
                         a = 0;
                     }
-            }
-        }
-
-        public void load(int i)
-        {
-            StreamReader sr = new StreamReader(path);
-
-            string line, currentNum;
-
-            while((line=sr.ReadLine()) != null)
-            {
-                int k = 0;
-                currentNum = "";
-
-                while (line[k] != '_')
-                    currentNum += line[k];
-
-                if (currentNum == i.ToString())
-                {
-                    int a = 0;
-
-                    while (a < 6)
-                    {
-                        line = sr.ReadLine();
-                        if (a == 1)
-                            header = line;
-                        else if (a == 3)
-                            date = line;
-                        else if (a == 5)
-                            description = line;
-                        a++;
-                    }
-                    break;
-                }
             }
         }
     }
