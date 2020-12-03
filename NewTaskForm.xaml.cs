@@ -66,14 +66,8 @@ namespace TaskManager
         #region button_handlers
         private void btn_done_Click(object sender, RoutedEventArgs e)
         {
-
             DateNormalize();
-
-            //if (date_isOK && desc_isOK && time_isOK && head_isOK)
-            //{
-            //    new_task_isOK = true;
-            //    Close();
-            //}
+            TimeNormalize();
         }
         private void btn_cancel_Click(object sender, RoutedEventArgs e)
         {
@@ -82,51 +76,23 @@ namespace TaskManager
         }
         #endregion
 
-
-        //нормализируй дату
-        //настрой корректное сохранение
-
         private void DateNormalize()
         {
-            int currDay   = ToInt32(Now.Day), 
-                currMonth = ToInt32(Now.Month), 
-                currYear  = ToInt32(Now.Year),
-                currMin   = ToInt32(Now.Minute),
-                currHour  = ToInt32(Now.Hour);
-
             NormalizeYear();
             NormalizeMonth();
             NormalizeDay();
-           
-
-            if (tbox_dateYear.Text.Length == 3)
-                tbox_dateYear.Text = "2" + tbox_dateYear.Text;
-            else if (tbox_dateYear.Text.Length == 2)
-                tbox_dateYear.Text = "20" + tbox_dateYear.Text;
-            else if (tbox_dateYear.Text.Length == 1)
-                tbox_dateYear.Text = "202" + tbox_dateYear.Text;
         }
-
-           // // для даты, большей за возможную
-           // if (Convert.ToInt32(tbox_dateDay.Text) > DateTime.DaysInMonth(Convert.ToInt32(tbox_dateYear.Text), Convert.ToInt32(tbox_dateMonth.Text)))
-           //     tbox_dateDay.Text = $"{DateTime.DaysInMonth(Convert.ToInt32(tbox_dateYear.Text), Convert.ToInt32(tbox_dateMonth.Text))}";
-           // if (Convert.ToInt32(tbox_dateMonth.Text) > 12)
-           //     tbox_dateYear.Text = "12";
-        
         private void NormalizeYear()
         {
             if (ToInt32(tbox_dateYear.Text) < Now.Year)
                 tbox_dateYear.Text = $"{Now.Year}";
         }
-        
         private void NormalizeMonth()
         {
             if (ToInt32(tbox_dateMonth.Text) >= 1 && ToInt32(tbox_dateMonth.Text) <= 12)
             {
-                if (ToInt32(tbox_dateMonth.Text) < Now.Month)
-                    if (ToInt32(tbox_dateYear.Text) == Now.Year)
+                if (ToInt32(tbox_dateMonth.Text) < Now.Month && ToInt32(tbox_dateYear.Text) == Now.Year)
                         tbox_dateMonth.Text = $"{Now.Month}";
-
             }
             else
             {
@@ -140,10 +106,7 @@ namespace TaskManager
                         tbox_dateMonth.Text = "01";
                 }
             }
-
-
         }
-
         private void NormalizeDay()
         {
             if (ToInt32(tbox_dateDay.Text) >= 1 &&
@@ -165,6 +128,69 @@ namespace TaskManager
                 }
                 else
                     tbox_dateDay.Text = $"{DaysInMonth(ToInt32(tbox_dateYear.Text), ToInt32(tbox_dateMonth.Text))}";
+            }
+        }
+
+        private void TimeNormalize()
+        {
+            NormalizeHour();
+            NormalizeMinute();
+        }
+
+        private void NormalizeHour()
+        {
+            if (ToInt32(tbox_timeHour.Text) >= 0 && ToInt32(tbox_timeHour.Text) <= 23)
+            {
+                if(ToInt32(tbox_dateDay.Text) == Now.Day &&
+                    ToInt32(tbox_dateMonth.Text) == Now.Month &&
+                    ToInt32(tbox_dateYear.Text) == Now.Year && 
+                    ToInt32(tbox_timeHour.Text) < Now.Hour)
+                    tbox_timeHour.Text = $"{Now.Hour}";
+            }
+            else
+            {
+                if (ToInt32(tbox_timeHour.Text) < 0)
+                {
+                    if (ToInt32(tbox_dateDay.Text) == Now.Day && 
+                        ToInt32(tbox_dateMonth.Text) == Now.Month &&
+                        ToInt32(tbox_dateYear.Text) == Now.Year)
+                        tbox_timeHour.Text = $"{Now.Hour}";
+                    else
+                        tbox_timeHour.Text = "00";
+                }
+                else
+                    tbox_timeHour.Text = "23";
+            }    
+        }
+        private void NormalizeMinute()
+        {
+            if(ToInt32(tbox_timeMinute.Text) >= 0 && ToInt32(tbox_timeMinute.Text) <= 59)
+            {
+                if (ToInt32(tbox_dateDay.Text) == Now.Day &&
+                        ToInt32(tbox_dateMonth.Text) == Now.Month &&
+                        ToInt32(tbox_dateYear.Text) == Now.Year)
+                {
+                    if (ToInt32(tbox_timeHour.Text) == Now.Hour && ToInt32(tbox_timeMinute.Text) < Now.Minute)
+                        tbox_timeMinute.Text = $"{Now.Minute}";
+                }
+            }
+            else
+            {
+                if (ToInt32(tbox_timeMinute.Text) < 0)
+                {
+                    if (ToInt32(tbox_dateDay.Text) == Now.Day &&
+                        ToInt32(tbox_dateMonth.Text) == Now.Month &&
+                        ToInt32(tbox_dateYear.Text) == Now.Year)
+                    {
+                        if (ToInt32(tbox_timeHour.Text) == Now.Hour)
+                            tbox_timeMinute.Text = $"{Now.Minute}";
+                        else
+                            tbox_timeMinute.Text = "00";
+                    }
+
+                }
+                else
+                    tbox_timeMinute.Text = "59";
             }
         }
     }
