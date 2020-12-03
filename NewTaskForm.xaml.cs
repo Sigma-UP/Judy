@@ -60,7 +60,8 @@ namespace TaskManager
         }
         private void tbox_GotFocus(object sender, RoutedEventArgs e)
         {
-            (sender as TextBox).Text = "";
+            if(!Int32.TryParse((sender as TextBox).Text, out int n))
+                (sender as TextBox).Text = "";
         }
         #endregion
         #region button_handlers
@@ -68,6 +69,17 @@ namespace TaskManager
         {
             DateNormalize();
             TimeNormalize();
+            TextNormalize();
+
+            new_task = new Task();
+
+            new_task.setDescription(tbox_head.Text, tbox_description.Text);
+            new_task.setDate(tbox_dateDay.Text,
+                tbox_dateMonth.Text,
+                tbox_dateYear.Text,
+                tbox_timeHour.Text,
+                tbox_timeMinute.Text);
+            new_task.save(3);
         }
         private void btn_cancel_Click(object sender, RoutedEventArgs e)
         {
@@ -136,7 +148,6 @@ namespace TaskManager
             NormalizeHour();
             NormalizeMinute();
         }
-
         private void NormalizeHour()
         {
             if (ToInt32(tbox_timeHour.Text) >= 0 && ToInt32(tbox_timeHour.Text) <= 23)
@@ -170,8 +181,8 @@ namespace TaskManager
                         ToInt32(tbox_dateMonth.Text) == Now.Month &&
                         ToInt32(tbox_dateYear.Text) == Now.Year)
                 {
-                    if (ToInt32(tbox_timeHour.Text) == Now.Hour && ToInt32(tbox_timeMinute.Text) < Now.Minute)
-                        tbox_timeMinute.Text = $"{Now.Minute}";
+                    if (ToInt32(tbox_timeHour.Text) == Now.Hour && ToInt32(tbox_timeMinute.Text) <= Now.Minute)
+                        tbox_timeMinute.Text = $"{Now.Minute + 1}";
                 }
             }
             else
@@ -192,6 +203,24 @@ namespace TaskManager
                 else
                     tbox_timeMinute.Text = "59";
             }
+        }
+
+        private void TextNormalize()
+        {
+            HeaderNormalize();
+            DescriptionNormalize();
+        }
+
+        private void HeaderNormalize()
+        {
+            if(tbox_head.Text == "")
+                tbox_head.Text = "Undefined";
+        }
+
+        private void DescriptionNormalize()
+        {
+            if (tbox_description.Text == "")
+                tbox_description.Text = "Undefined";
         }
     }
 }

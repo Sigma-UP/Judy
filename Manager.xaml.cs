@@ -18,8 +18,8 @@ namespace TaskManager
 {
     public partial class Manager : Page
     {
-        List<Task> tasks = new List<Task>();
-        
+        public List<Task> tasks = new List<Task>();
+   
         public Manager()
         {
             InitializeComponent();

@@ -10,7 +10,7 @@ namespace TaskManager
 {
     public class Task
     {
-        List<Task> tasks = new List<Task>();
+        private List<Task> tasks = new List<Task>();
 
         static string path = "Tasks.txt";
         private string header;
@@ -63,11 +63,11 @@ namespace TaskManager
 
         public void save(int i)
         {
-            StreamWriter sw = new StreamWriter(path);
+            StreamWriter sw = new StreamWriter(path, append:true);
 
-            sw.WriteLine($"{i}_TaskName:\n{header}");
-            sw.WriteLine($"{i}_TaskDate:\n{date}");
-            sw.WriteLine($"{i}_TaskDescription:\n{description}");
+            sw.WriteLine($"[K]HEAD:\n{header}");
+            sw.WriteLine($"[K]DATE:\n{date}");
+            sw.WriteLine($"[K]DESC:\n{description}");
 
             sw.Close();
         }
@@ -96,8 +96,13 @@ namespace TaskManager
                     }
                     else if (a == 2)
                     {
-                        while (line[0] != '[' && line[1] != 'K' && line[2] != ']')
+                        //you need to upgrade this shit
+                        while (line != null)
                         {
+                           if (line.Length >= 3)
+                                if(line[0] == '[' && line[1] == 'K' && line[2] == ']')
+                                    break;
+
                             if (task.description != "" && task.description!=null)
                                 task.description += "\r\n  ";
 
