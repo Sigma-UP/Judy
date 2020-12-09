@@ -5,9 +5,9 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:TaskManager"
       mc:Ignorable="d" 
+      
       d:DesignHeight="800" d:DesignWidth="770"
       Title="Manager">
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
@@ -30,27 +30,25 @@
             <!--TaskList-->
             <StackPanel Grid.Column="0" Margin="0, 20, 0, 0" 
                         Orientation="Vertical" >
-             
-                <ListView x:Name="task_list" Margin="10, 0, 10, 0"
-                          Height="400" Background="#FF056356" 
+
+                <ListView x:Name="task_list"
+                          Margin="10, 0, 10, 0" 
+                          Height="458" Background="#FF056356" 
                           BorderBrush="#FF056356" FontSize="15"
                           Foreground="#FF701643" Visibility="Visible"
-                          SelectionChanged="task_list_SelectionChanged" FontWeight="Medium"/>
-
-               <Button x:Name="btn_addTask"
+                          SelectionChanged="task_list_SelectionChanged" FontWeight="Medium">
+                </ListView>
+                <Button x:Name="btn_addTask"
                         Content="Add task..." Margin="10, 10, 10, 0" 
                         Height="50" FontSize="20"
                         BorderBrush="#FF701643"
                         Background="#FF018574" Foreground="#FF701643"
                         Click="btn_addTask_Click"/>
-                <Button Content="Remove task..." Margin="10, 10, 10, 0" 
+                <Button x:Name="btn_removeTask" IsEnabled="False"
+                        Content="Remove task..." Margin="10, 10, 10, 0" 
                         Height="50" FontSize="20"
                         BorderBrush="#FF701643"
-                        Background="#FF018574" Foreground="#FF701643"/>
-                <Button Content="Sort tasks..." Margin="10, 10, 10, 0" 
-                        Height="50" FontSize="20"
-                        BorderBrush="#FF701643"
-                        Background="#FF018574" Foreground="#FF701643"/>
+                        Background="#FF018574" Foreground="#FF701643" Click="btn_removeTask_Click"/>
             </StackPanel>
 
             <!--TaskFullInfo-->

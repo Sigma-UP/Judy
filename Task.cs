@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -10,66 +12,46 @@ namespace TaskManager
 {
     public class Task
     {
-        private List<Task> tasks = new List<Task>();
-
         static string path = "Tasks.txt";
         private string header;
         private string description;
         private string date;
 
-        public string Header
-        {
-            get
-            {
-                return header;
-            }
-            set
-            {
-                header = value;
-            }
-        }
-        public string Desc
-        {
-            get
-            {
-                return description;
-            }
-            set
-            {
-                description = value;
-            }
-        }
-        public string Date
-        {
-            get
-            {
-                return date;
-            }
-            set
-            {
-                date = value;
-            }
-        }
+        public string Header { get => header; set => header = value;  }
+        public string Description { get => description; set => description = value; }
+        public string Date { get => date; set => date = value; }
 
         public void setDescription(string header, string description)
         {
-            this.header = header;
-            this.description = description;
+            this.Header = header;
+            this.Description = description;
         }
         public void setDate(string day = "NN", string month = "NN", string year = "NN", string hour = "NN", string min = "NN")
         {
-            date = $"{day}/{month}/{year}|{hour}:{min}";
+            Date = $"{day}/{month}/{year}|{hour}:{min}";
         }
 
-        public void save(int i)
+        public void save(bool append = true)
         {
-            StreamWriter sw = new StreamWriter(path, append:true);
+            StreamWriter sw = new StreamWriter(path, append:append);
 
-            sw.WriteLine($"[K]HEAD:\n{header}");
-            sw.WriteLine($"[K]DATE:\n{date}");
-            sw.WriteLine($"[K]DESC:\n{description}");
+            sw.WriteLine($"[K]HEAD:\n{Header}");
+            sw.WriteLine($"[K]DATE:\n{Date}");
+            sw.WriteLine($"[K]DESC:\n{Description}");
 
             sw.Close();
+        }
+        public static void delete(List<Task> tasks, int i)
+        {
+            while (i < tasks.Count - 1)
+                tasks[i] = tasks[++i];
+
+            tasks.RemoveAt(tasks.Count - 1);
+
+            FileStream fs = new FileStream(path, FileMode.Create);
+            fs.Close();
+            foreach (Task t in tasks)
+                t.save();
         }
         public static void load(List<Task> tasks)
         {
@@ -91,7 +73,7 @@ namespace TaskManager
                     }
                     else if (a == 1)
                     {
-                        task.date = line;
+                        task.Date = line;
                         a++;
                     }
                     else if (a == 2)
@@ -103,10 +85,10 @@ namespace TaskManager
                                 if(line[0] == '[' && line[1] == 'K' && line[2] == ']')
                                     break;
 
-                            if (task.description != "" && task.description!=null)
-                                task.description += "\r\n  ";
+                            if (task.Description != "" && task.Description!=null)
+                                task.Description += "\r\n  ";
 
-                            task.description += line;
+                            task.Description += line;
 
                             if ((line = sr.ReadLine()) == null)
                                 break;
@@ -116,5 +98,6 @@ namespace TaskManager
                     }
             }
         }
+        public override string ToString() => Header;
     }
 }

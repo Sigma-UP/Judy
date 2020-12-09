@@ -34,3 +34,4 @@ D:\Work\OOP\Judith\obj\Debug\TaskManager.exe
 D:\Work\OOP\Judith\obj\Debug\TaskManager.pdb
 D:\Work\OOP\Judith\obj\Debug\NewTaskForm.g.cs
 D:\Work\OOP\Judith\obj\Debug\NewTaskForm.baml
+D:\Work\OOP\Judith\obj\Debug\GeneratedInternalTypeHelper.g.cs

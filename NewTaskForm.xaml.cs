@@ -74,20 +74,17 @@ namespace TaskManager
             new_task = new Task();
 
             new_task.setDescription(tbox_head.Text, tbox_description.Text);
-            new_task.setDate(tbox_dateDay.Text,
-                tbox_dateMonth.Text,
-                tbox_dateYear.Text,
-                tbox_timeHour.Text,
-                tbox_timeMinute.Text);
-            new_task.save(3);
-        }
-        private void btn_cancel_Click(object sender, RoutedEventArgs e)
-        {
-            new_task = null;
+            new_task.setDate(tbox_dateDay.Text, tbox_dateMonth.Text,
+                            tbox_dateYear.Text, tbox_timeHour.Text,
+                            tbox_timeMinute.Text);
+
+            new_task.save();
+
             Close();
         }
+        private void btn_cancel_Click(object sender, RoutedEventArgs e) => Close();
         #endregion
-
+        #region input_normalize
         private void DateNormalize()
         {
             NormalizeYear();
@@ -210,17 +207,16 @@ namespace TaskManager
             HeaderNormalize();
             DescriptionNormalize();
         }
-
         private void HeaderNormalize()
         {
             if(tbox_head.Text == "")
                 tbox_head.Text = "Undefined";
         }
-
         private void DescriptionNormalize()
         {
             if (tbox_description.Text == "")
                 tbox_description.Text = "Undefined";
         }
+        #endregion
     }
 }
