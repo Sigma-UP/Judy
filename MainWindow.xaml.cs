@@ -13,14 +13,12 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace TaskManager
-{
+namespace TaskManager{
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-
         public MainWindow()
         {
             InitializeComponent();
@@ -33,6 +31,17 @@ namespace TaskManager
                 tbox_currDate.Text = $"{DateTime.Now.DayOfWeek} | {DateTime.Now.Day:00}/{DateTime.Now.Month:00}/{DateTime.Now.Year}";
             };
             timer.Start();
+        }
+
+        private void btn_currTasks_Click(object sender, RoutedEventArgs e)
+        {
+            frame_cont.Navigate((new Uri("Manager.xaml", UriKind.Relative)));
+        }
+
+        private void btn_finTasks_Click(object sender, RoutedEventArgs e)
+        {
+            frame_cont.Navigate((new Uri("Done.xaml", UriKind.Relative)));
+
         }
     }
 }

@@ -15,10 +15,13 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0">
-            <TextBlock Margin="10, 19, 0, 0" Text="Your current tasks" Foreground="#FF018574" FontSize="40"/>
+            <TextBlock Margin="10, 19, 0, 0" Text="Your current tasks" 
+                       Foreground="#FF012132" FontSize="40"/>
             <StackPanel Orientation="Horizontal">
-                <TextBlock Margin="10, 0, 0, 0" Text="Upcoming: " Foreground="#FF018574" FontSize="15"/>
-                <TextBlock x:Name="tbox_upcoming" Margin="10, 0, 0, 0" Foreground="#FF018574" FontSize="15"/>
+                <TextBlock Margin="10, 0, 0, 0" Text="Upcoming: " 
+                           Foreground="#FF054163" FontSize="15"/>
+                <TextBlock x:Name="tbox_upcoming" Margin="10, 0, 0, 0" 
+                           Foreground="#FF054163" FontSize="15"/>
             </StackPanel>
         </StackPanel>
 
@@ -30,38 +33,59 @@
             <!--TaskList-->
             <StackPanel Grid.Column="0" Margin="0, 20, 0, 0" 
                         Orientation="Vertical" >
-
                 <ListView x:Name="task_list"
                           Margin="10, 0, 10, 0" 
-                          Height="458" Background="#FF056356" 
-                          BorderBrush="#FF056356" FontSize="15"
-                          Foreground="#FF701643" Visibility="Visible"
+                          Height="458" BorderThickness="0"
+                          FontSize="15"
+                          Foreground="White" 
                           SelectionChanged="task_list_SelectionChanged" FontWeight="Medium">
+
+                    <ListView.Background>
+                        <SolidColorBrush Color="#FF054163" Opacity="0.5"/>
+                    </ListView.Background>
                 </ListView>
                 <Button x:Name="btn_addTask"
                         Content="Add task..." Margin="10, 10, 10, 0" 
-                        Height="50" FontSize="20"
-                        BorderBrush="#FF701643"
-                        Background="#FF018574" Foreground="#FF701643"
-                        Click="btn_addTask_Click"/>
+                        Height="50" FontSize="25"
+                        BorderBrush="White"
+                        Foreground="White"
+                        Click="btn_addTask_Click">
+                    <Button.Background>
+                        <SolidColorBrush Color="#FF054163" Opacity="0.5"/>
+                    </Button.Background>
+                </Button>
                 <Button x:Name="btn_removeTask" IsEnabled="False"
                         Content="Remove task..." Margin="10, 10, 10, 0" 
-                        Height="50" FontSize="20"
-                        BorderBrush="#FF701643"
-                        Background="#FF018574" Foreground="#FF701643" Click="btn_removeTask_Click"/>
+                        Height="50" FontSize="25"
+                        BorderBrush="White"
+                        Foreground="White" 
+                        Click="btn_removeTask_Click">
+                    <Button.Background>
+                        <SolidColorBrush Color="#FF054163" Opacity="0.5"/>
+                    </Button.Background>
+                </Button>
             </StackPanel>
 
             <!--TaskFullInfo-->
             <StackPanel Grid.Column="1" Margin="0, 20, 0, 0" Orientation="Vertical">
                 <TextBlock x:Name="tbox_description" Margin="10, 0, 10, 0" 
-                           Height="518" Background="#FF056356"
+                           Height="518"
                            TextWrapping="Wrap" FontSize="20" 
-                           FontFamily="Sitka Display" Foreground="#FF701643" 
-                           FontWeight="Medium" TextOptions.TextFormattingMode="Display"/>
+                           FontFamily="Sitka Display" Foreground="White" 
+                           FontWeight="Medium" TextOptions.TextFormattingMode="Display">
+                    <TextBlock.Background>
+                        <SolidColorBrush Color="#FF054163" Opacity="0.5"/>
+                    </TextBlock.Background>
+                </TextBlock>
                 <Button x:Name="btn_taskDone" IsEnabled="False"
                         Content="Done" Margin="10, 10, 10, 0" 
-                        Height="50" FontSize="20"
-                        BorderBrush="#FF701643" Foreground="#FF701643" Background="#FF018574"/>
+                        Height="50" FontSize="25"
+                        BorderBrush="White" Foreground="White" 
+                        Click="btn_taskDone_Click">
+                    <Button.Background>
+                        <SolidColorBrush Color="#FF054163" Opacity="0.5"/>
+                    </Button.Background>
+                </Button>
             </StackPanel>
         </Grid>
 

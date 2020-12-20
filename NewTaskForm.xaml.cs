@@ -1,16 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using StringExtension;
 
 using static System.Convert;
 using static System.DateTime;
@@ -19,7 +11,7 @@ namespace TaskManager
 {
     public partial class NewTaskForm : Window
     {
-        public Task new_task = null;
+        public CustomTask new_task = null;
 
         public NewTaskForm() 
         {
@@ -71,7 +63,7 @@ namespace TaskManager
             TimeNormalize();
             TextNormalize();
 
-            new_task = new Task();
+            new_task = new CustomTask();
 
             new_task.setDescription(tbox_head.Text, tbox_description.Text);
             new_task.setDate(tbox_dateDay.Text, tbox_dateMonth.Text,
@@ -93,11 +85,17 @@ namespace TaskManager
         }
         private void NormalizeYear()
         {
-            if (ToInt32(tbox_dateYear.Text) < Now.Year)
+            if (!tbox_dateYear.Text.isNumber() || ToInt32(tbox_dateYear.Text) < Now.Year)
                 tbox_dateYear.Text = $"{Now.Year}";
         }
         private void NormalizeMonth()
         {
+            if (!tbox_dateMonth.Text.isNumber())
+            {
+                tbox_dateMonth.Text = $"{Now.Month}";
+                return;
+            }
+
             if (ToInt32(tbox_dateMonth.Text) >= 1 && ToInt32(tbox_dateMonth.Text) <= 12)
             {
                 if (ToInt32(tbox_dateMonth.Text) < Now.Month && ToInt32(tbox_dateYear.Text) == Now.Year)
@@ -118,6 +116,12 @@ namespace TaskManager
         }
         private void NormalizeDay()
         {
+            if (!tbox_dateDay.Text.isNumber())
+            {
+                tbox_dateDay.Text = $"{Now.Day}";
+                return;
+            }
+
             if (ToInt32(tbox_dateDay.Text) >= 1 &&
                 ToInt32(tbox_dateDay.Text) <= DaysInMonth(ToInt32(tbox_dateYear.Text), ToInt32(tbox_dateMonth.Text)))
             {
@@ -147,6 +151,11 @@ namespace TaskManager
         }
         private void NormalizeHour()
         {
+            if (!tbox_timeHour.Text.isNumber())
+            {
+                tbox_timeHour.Text = $"{Now.Hour}";
+                return;
+            }
             if (ToInt32(tbox_timeHour.Text) >= 0 && ToInt32(tbox_timeHour.Text) <= 23)
             {
                 if(ToInt32(tbox_dateDay.Text) == Now.Day &&
@@ -172,7 +181,13 @@ namespace TaskManager
         }
         private void NormalizeMinute()
         {
-            if(ToInt32(tbox_timeMinute.Text) >= 0 && ToInt32(tbox_timeMinute.Text) <= 59)
+            if (!tbox_timeMinute.Text.isNumber())
+            {
+                tbox_timeMinute.Text = $"{Now.Minute}";
+                return;
+            }
+
+            if (ToInt32(tbox_timeMinute.Text) >= 0 && ToInt32(tbox_timeMinute.Text) <= 59)
             {
                 if (ToInt32(tbox_dateDay.Text) == Now.Day &&
                         ToInt32(tbox_dateMonth.Text) == Now.Month &&

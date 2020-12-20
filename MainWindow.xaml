@@ -6,32 +6,47 @@
         xmlns:local="clr-namespace:TaskManager"
         mc:Ignorable="d"
         Title="MainWindow" Height="800" Width="1200" ResizeMode="CanMinimize">
-    
+
+    <Window.Background>
+        <ImageBrush ImageSource="D:\Work\OOP\Judith\res\mainWin-background.jpg" Stretch="Fill" />
+    </Window.Background>
+
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="230"/>
+            <ColumnDefinition Width="197"/>
+            <ColumnDefinition Width="33"/>
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Background="#FF630B36">
-            <TextBlock Foreground ="#FF018574" x:Name="tbox_currTime"
+        <StackPanel Grid.ColumnSpan="2">
+            <TextBlock Foreground ="Black" x:Name="tbox_currTime"
                        Text="Time" FontSize="40" Margin="0,20,10,0"
                        HorizontalAlignment="Center"/>
-            <TextBlock Foreground ="#FF056356" x:Name="tbox_currDate" 
+            <TextBlock Foreground ="Black" x:Name="tbox_currDate" 
                        Text="Date" FontSize="15" Margin="0,0,10,0" 
+                       FontWeight="DemiBold"
                        HorizontalAlignment="Center"/>
-            <Button Margin="10, 26, 10, 0" Height="50" 
-                    Content="Current Tasks" FontSize="20"
-                    BorderBrush="#FF701643"
-                    Background="#FF018574" Foreground="#FF701643"/>
-            <Button Margin="10, 10, 10, 0" Height="50" 
-                    Content="Finished Tasks" FontSize="20"
-                    BorderBrush="#FF701643"
-                    Background="#FF018574" Foreground="#FF701643"/>
+            <Button x:Name="btn_currTasks"
+                    Margin="10, 26, 10, 0" Height="50" 
+                    Content="Current Tasks" FontSize="25"
+                    Foreground="White" Click="btn_currTasks_Click">
+                <Button.Background>
+                    <SolidColorBrush Color="#FF054163" Opacity="0.5"/>
+                </Button.Background>
+            </Button>
+            <Button x:Name="btn_finTasks"
+                    Margin="10, 10, 10, 0" Height="50" 
+                    Content="Finished Tasks" FontSize="25"
+                    Foreground="White" Click="btn_finTasks_Click">
+                <Button.Background>
+                    <SolidColorBrush Color="#FF054163" Opacity="0.5"/>
+                </Button.Background>
+            </Button>
 
         </StackPanel>
 
-        <Frame NavigationUIVisibility="Hidden" Source="Manager.xaml"
-               Grid.Column="1" Background="#FF701643"/>
+        <Frame x:Name="frame_cont"
+               NavigationUIVisibility="Hidden" Source="Manager.xaml"
+               Grid.Column="2"/>
     </Grid>
 </Window>
