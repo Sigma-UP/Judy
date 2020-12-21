@@ -78,6 +78,8 @@ namespace TaskManager
                     else if (a == 3)
                     {
                         //you need to upgrade this shit
+
+                        //upd: get out 
                         while (line != null)
                         {
                             if (line.Length >= 3)

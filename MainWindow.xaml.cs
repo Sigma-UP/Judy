@@ -43,5 +43,22 @@ namespace TaskManager{
             frame_cont.Navigate((new Uri("Done.xaml", UriKind.Relative)));
 
         }
+
+
+
+        private void btn_close_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void btn_minimize_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void manipulation_bar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
+        }
     }
 }

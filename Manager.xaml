@@ -14,15 +14,22 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0">
-            <TextBlock Margin="10, 19, 0, 0" Text="Your current tasks" 
-                       Foreground="#FF012132" FontSize="40"/>
+        <StackPanel Grid.Row="0" Margin="10, 0, 10, 10">
+            <TextBlock Text="Your current tasks"
+                       Margin="10, 0, 0, 0"
+                       Foreground="White" FontSize="40">
+            </TextBlock>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Margin="10, 0, 0, 0" Text="Upcoming: " 
-                           Foreground="#FF054163" FontSize="15"/>
+                           Foreground="White" FontSize="15"/>
                 <TextBlock x:Name="tbox_upcoming" Margin="10, 0, 0, 0" 
                            Foreground="#FF054163" FontSize="15"/>
             </StackPanel>
+
+            <StackPanel.Background>
+                <SolidColorBrush Color="#FF054163" Opacity="0.5"/>
+            </StackPanel.Background>
+
         </StackPanel>
 
         <Grid Grid.Row="1">
@@ -31,14 +38,15 @@
                 <ColumnDefinition Width="5*"/>
             </Grid.ColumnDefinitions>
             <!--TaskList-->
-            <StackPanel Grid.Column="0" Margin="0, 20, 0, 0" 
+            <StackPanel Grid.Column="0" Margin="0, 10, 0, 0" 
                         Orientation="Vertical" >
                 <ListView x:Name="task_list"
                           Margin="10, 0, 10, 0" 
-                          Height="458" BorderThickness="0"
+                          Height="508" BorderThickness="0"
                           FontSize="15"
                           Foreground="White" 
-                          SelectionChanged="task_list_SelectionChanged" FontWeight="Medium">
+                          SelectionChanged="task_list_SelectionChanged" 
+                          FontWeight="Medium">
 
                     <ListView.Background>
                         <SolidColorBrush Color="#FF054163" Opacity="0.5"/>
@@ -67,16 +75,18 @@
             </StackPanel>
 
             <!--TaskFullInfo-->
-            <StackPanel Grid.Column="1" Margin="0, 20, 0, 0" Orientation="Vertical">
-                <TextBlock x:Name="tbox_description" Margin="10, 0, 10, 0" 
-                           Height="518"
-                           TextWrapping="Wrap" FontSize="20" 
-                           FontFamily="Sitka Display" Foreground="White" 
-                           FontWeight="Medium" TextOptions.TextFormattingMode="Display">
-                    <TextBlock.Background>
+            <StackPanel Grid.Column="1" Margin="0, 10, 0, 0" Orientation="Vertical">
+                <Border Margin="10, 0, 10, 0">
+                    <TextBlock x:Name="tbox_description" Margin="10, 0, 10, 0" 
+                                TextWrapping="Wrap" FontSize="20" Foreground="White" 
+                                FontWeight="Medium" TextOptions.TextFormattingMode="Display" Height="567">
+                    
+                    </TextBlock>
+
+                    <Border.Background>
                         <SolidColorBrush Color="#FF054163" Opacity="0.5"/>
-                    </TextBlock.Background>
-                </TextBlock>
+                    </Border.Background>
+                </Border>
                 <Button x:Name="btn_taskDone" IsEnabled="False"
                         Content="Done" Margin="10, 10, 10, 0" 
                         Height="50" FontSize="25"
