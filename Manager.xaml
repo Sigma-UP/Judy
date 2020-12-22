@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:TaskManager"
       mc:Ignorable="d" 
       
-      d:DesignHeight="800" d:DesignWidth="770"
+      d:DesignHeight="770" d:DesignWidth="770"
       Title="Manager">
     <Grid>
         <Grid.RowDefinitions>
@@ -42,7 +42,7 @@
                         Orientation="Vertical" >
                 <ListView x:Name="task_list"
                           Margin="10, 0, 10, 0" 
-                          Height="508" BorderThickness="0"
+                          Height="510" BorderThickness="0"
                           FontSize="15"
                           Foreground="White" 
                           SelectionChanged="task_list_SelectionChanged" 
@@ -79,7 +79,7 @@
                 <Border Margin="10, 0, 10, 0">
                     <TextBlock x:Name="tbox_description" Margin="10, 0, 10, 0" 
                                 TextWrapping="Wrap" FontSize="20" Foreground="White" 
-                                FontWeight="Medium" TextOptions.TextFormattingMode="Display" Height="567">
+                                FontWeight="Medium" TextOptions.TextFormattingMode="Display" Height="570">
                     
                     </TextBlock>
 
