@@ -233,5 +233,15 @@ namespace TaskManager
                 tbox_description.Text = "Undefined";
         }
         #endregion
+
+        private void grid_nTask_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }
