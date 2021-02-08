@@ -55,21 +55,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Done.xaml.cs">
-      <DependentUpon>Done.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Manager.xaml.cs">
-      <DependentUpon>Manager.xaml</DependentUpon>
-    </Compile>
     <Compile Include="NewTaskForm.xaml.cs">
       <DependentUpon>NewTaskForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="StringExtension.cs" />
     <Compile Include="CustomTask.cs" />
-    <Page Include="Done.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -82,10 +72,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Manager.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="NewTaskForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
