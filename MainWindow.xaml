@@ -80,7 +80,7 @@
 
             </StackPanel>
 
-            <Grid x:Name="current_tasks_module" Visibility="Collapsed"
+            <Grid x:Name="current_tasks_module" Visibility="Visible"
                Grid.Column="2" Grid.ColumnSpan="3">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="100"/>
@@ -174,7 +174,7 @@
 
             </Grid>
 
-            <Grid x:Name="finished_tasks_module" Visibility="Visible"
+            <Grid x:Name="finished_tasks_module" Visibility="Collapsed"
                Grid.Column="2" Grid.ColumnSpan="3">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="100"/>

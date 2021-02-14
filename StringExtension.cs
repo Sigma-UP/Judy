@@ -4,6 +4,11 @@ namespace StringExtension
 {
 	public static class StringExtension
 	{
+		public static string ToNN_Format(this string str)
+        {
+			return str.Length < 2 ? $"0{str}" : str;
+		}
+
 		public static bool isNumber(this string str)
 		{
 			double varriable;

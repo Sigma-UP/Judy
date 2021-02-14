@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using StringExtension;
 using System.IO;
 using System;
 
@@ -6,22 +7,23 @@ namespace TaskManager
 {
     public class CustomTask
     {
-
         public string Header { get; set; }
         public string Description { get; set; }
         public string Date { get; set; }
         public string Time { get; set; }
 
+
         public void setDescription(string header, string description)
         {
-            this.Header = header;
-            this.Description = description;
+            Header = header;
+            Description = description;
         }
+
         public void setDate(string day = "NN", string month = "NN",
             string year = "NN", string hour = "NN", string min = "NN")
         {
-            Date = $"{day}/{month}/{year}";
-            Time = $"{hour}:{min}";
+            Date = $"{day.ToNN_Format()}/{month.ToNN_Format()}/{year}";
+            Time = $"{hour.ToNN_Format()}:{min.ToNN_Format()}";
         }
 
         public void save(string path = "Tasks.txt", bool append = true)
@@ -77,25 +79,22 @@ namespace TaskManager
                     }
                     else if (a == 3)
                     {
-                        //you need to upgrade this shit
+                       while (line != null)
+                       {
+                           if (line.Length >= 3)
+                               if (line[0] == '[' && line[1] == 'K' && line[2] == ']')
+                                   break;
 
-                        //upd: get out 
-                        while (line != null)
-                        {
-                            if (line.Length >= 3)
-                                if (line[0] == '[' && line[1] == 'K' && line[2] == ']')
-                                    break;
+                           if (task.Description != "" && task.Description != null)
+                               task.Description += "\r\n  ";
 
-                            if (task.Description != "" && task.Description != null)
-                                task.Description += "\r\n  ";
+                           task.Description += line;
 
-                            task.Description += line;
-
-                            if ((line = sr.ReadLine()) == null)
-                                break;
-                        }
-                        tasks.Add(task);
-                        a = 0;
+                           if ((line = sr.ReadLine()) == null)
+                               break;
+                       }
+                       tasks.Add(task);
+                       a = 0;
                     }
             }
             sr.Close();
@@ -105,8 +104,8 @@ namespace TaskManager
         public override string ToString() {
             string td;
 
-            if (Date == $"{DateTime.Now.Day}/{DateTime.Now.Month}/{DateTime.Now.Year}")
-                td = Time;
+            if (Date == $"{DateTime.Now.Day.ToString().ToNN_Format()}/{DateTime.Now.Month.ToString().ToNN_Format()}/{DateTime.Now.Year}")
+                td = "Today, " + Time;
             else
                 td = Date;
 

@@ -1,17 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Notifications.Wpf;
+using StringExtension;
 
 namespace TaskManager{
     /// <summary>
@@ -33,13 +26,29 @@ namespace TaskManager{
             
             tbox_upcoming.Text = CustomTask.upcoming(current_tasks);
 
+            var notificationManager = new NotificationManager();
             var timer = new System.Windows.Threading.DispatcherTimer();
             timer.Interval = new TimeSpan(0, 0, 1);
             timer.IsEnabled = true;
+            int current_sec = DateTime.Now.Second;
             timer.Tick += (o, t) => {
                 tbox_upcoming.Text = CustomTask.upcoming(current_tasks); // to show upcoming tasks
+                foreach (CustomTask task in current_tasks)
+                    {
+                        if (task.Date == $"{DateTime.Now.Day.ToString().ToNN_Format()}/{DateTime.Now.Month.ToString().ToNN_Format()}/{DateTime.Now.Year}" &&
+                             task.Time == $"{DateTime.Now.Hour.ToString().ToNN_Format()}:{DateTime.Now.Minute.ToString().ToNN_Format()}" && current_sec % 59 == 0)
+                
+                        notificationManager.Show(new NotificationContent
+                        {
+                            Title = task.Header,
+                            Message = task.Description,
+                            Type = NotificationType.Information
+                        });
+                
+                    }
                 tbox_currTime.Text = $"{DateTime.Now.Hour:00}:{DateTime.Now.Minute:00}:{DateTime.Now.Second:00}";
                 tbox_currDate.Text = $"{DateTime.Now.DayOfWeek} | {DateTime.Now.Day:00}/{DateTime.Now.Month:00}/{DateTime.Now.Year}";
+                current_sec++;
             };
             timer.Start();
         }
